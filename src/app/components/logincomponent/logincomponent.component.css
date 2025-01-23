@@ -1,0 +1,36 @@
+
+.container {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.image {
+    border-radius: 20px;
+    margin-top: 50px;
+    width: 90%;
+    max-width: 300px;
+    color: #706f6f;
+}
+
+input {
+    background-color: aliceblue;
+    width: 90%;
+    max-width: 300px;
+    display: block;
+    color: red;
+}
+
+label {
+    margin-top: 20px;
+    width: 90%;
+}
+
+.btn {
+    background-color: #706f6f;
+    width: 90%;
+    max-width: 300px;
+    margin-top: 20px;
+}

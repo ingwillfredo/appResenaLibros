@@ -10,7 +10,7 @@ import { ReviewscomponentComponent } from './components/reviewscomponent/reviews
 import { ReviewcomponentComponent } from './components/reviewcomponent/reviewcomponent.component';
 
 const routes: Routes = [
-  {path: '', component: HomecomponentComponent},
+  {path: '', component: IniciocomponentComponent},
   {path: 'home', component: HomecomponentComponent},
   {path: 'login', component: LogincomponentComponent},
   {path: 'register', component: RegistercomponentComponent},

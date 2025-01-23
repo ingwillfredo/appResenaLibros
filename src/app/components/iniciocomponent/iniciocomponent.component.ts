@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iniciocomponent',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./iniciocomponent.component.css']
 })
 export class IniciocomponentComponent {
+
+  constructor(private router: Router){}
+
+  ClickIngresar(){
+    this.router.navigate(['/login'])
+  }
+
+  ClickRegistrarse(){
+    this.router.navigate(['/register'])
+  }
 
 }
