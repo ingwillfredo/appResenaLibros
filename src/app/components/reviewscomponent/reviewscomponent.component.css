@@ -1,0 +1,17 @@
+
+h4 {
+    margin-top: 20px;
+}
+
+.boton {
+    margin-top: 20px;
+    text-align: end;
+}
+
+a {
+    background-color: #706f6f;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+}

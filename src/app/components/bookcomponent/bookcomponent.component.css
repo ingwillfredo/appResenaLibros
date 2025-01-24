@@ -1,0 +1,21 @@
+
+.title {
+    background-color: #706f6f;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: #c6c6c6;
+    padding: 10px;
+}
+
+.description {
+    background-color: #c6c6c6;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.genre {
+    color: #ffffff;
+    margin-top: 10px;
+    width: 200px;
+}

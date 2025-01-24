@@ -1,0 +1,29 @@
+
+.container {
+    width: 60%;
+}
+
+textarea, input {
+    border-color: rgb(66, 39, 8);
+}
+
+textarea:focus, input:focus, input[type]:focus {
+    border-color: rgb(122, 94, 57);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgba(99, 86, 69, 0.6);
+    outline: 0 none;
+}
+
+.btn-option {
+    margin: auto;
+    margin-top: 30px;
+    display: block;
+    background-color: #c6c6c6; 
+    color: #706f6f;
+    width: 150px;
+    font-size: 18px;
+}
+
+.btn-option:hover {
+    font-size: 20px;
+    width: 152px;
+}

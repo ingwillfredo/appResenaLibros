@@ -1,1 +1,39 @@
-<p>reviewscomponent works!</p>
+
+<div class="container">
+    <h4>Comentarios</h4>
+    <div class="book">
+        <div class="row col-lg-12">
+            <div class="col-md-2">
+                Titulo
+            </div>
+            <div class="col-md-6">
+                Reseña
+            </div>
+            <div class="col-md-2">
+                Autor
+            </div>
+            <div class="col-md-2">
+                Fecha
+            </div>
+            <hr>
+        </div>
+        <div class="row col-lg-12" *ngFor="let item of reviews;let i =index">
+            <div class="col-md-2">
+                {{item.title}}
+            </div>
+            <div class="col-md-6">
+                {{item.description}}
+            </div>
+            <div class="col-md-2">
+                {{item.name_User}}
+            </div>
+            <div class="col-md-2">
+                {{item.date}}
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-12 boton">
+            <a routerLink="/book" (click)="Review()">Comentar</a>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,10 @@ import { BookcomponentComponent } from './components/bookcomponent/bookcomponent
 import { BookscomponentComponent } from './components/bookscomponent/bookscomponent.component';
 import { ReviewcomponentComponent } from './components/reviewcomponent/reviewcomponent.component';
 import { ReviewscomponentComponent } from './components/reviewscomponent/reviewscomponent.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NavbarcomponentComponent } from './components/navbarcomponent/navbarcomponent.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -22,11 +27,17 @@ import { ReviewscomponentComponent } from './components/reviewscomponent/reviews
     BookcomponentComponent,
     BookscomponentComponent,
     ReviewcomponentComponent,
-    ReviewscomponentComponent
+    ReviewscomponentComponent,
+    NavbarcomponentComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

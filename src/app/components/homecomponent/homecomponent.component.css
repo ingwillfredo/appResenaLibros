@@ -1,0 +1,25 @@
+.search {
+    width: 50%;
+    margin-left: 45%;
+}
+
+h4 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.card {
+    border: none;
+} 
+
+.paginador {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}

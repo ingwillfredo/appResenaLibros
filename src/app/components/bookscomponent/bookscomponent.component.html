@@ -1,1 +1,41 @@
-<p>bookscomponent works!</p>
+<div class="container">
+    <h4>Lista de libros</h4>
+    <div class="book">
+        <div class="search">
+              <input type="search" [(ngModel)]="filter" class="form-control me-2" id="filter" placeholder="Buscar">
+              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </div>
+        <div class="row col-lg-12">
+            <div class="col-md-1">
+                #
+            </div>
+            <div class="col-md-4">
+                Titulo
+            </div>
+            <div class="col-md-4">
+                Autor
+            </div>
+            <div class="col-md-3">
+                
+            </div>
+            <hr>
+        </div>
+        <div class="books col-lg-12" *ngFor="let item of books | paginate: { itemsPerPage: 7, currentPage: p };let i =index">
+            <div class="col-md-1">
+                {{i+1}}
+            </div>
+            <div class="col-md-4">
+                {{item.title}}
+            </div>
+            <div class="col-md-4">
+                {{item.author}}
+            </div>
+            <div class="col-md-3">
+                <a routerLink="/book" (click)="SelBook(item.id)">Seleccionar</a> 
+            </div>
+        </div>
+        <div class="paginador">
+            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HomeserviceService } from 'src/app/services/homeservice.service';
 
 @Component({
   selector: 'app-homecomponent',
@@ -6,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./homecomponent.component.css']
 })
 export class HomecomponentComponent {
-
 }

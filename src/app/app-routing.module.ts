@@ -17,7 +17,8 @@ const routes: Routes = [
   {path: 'books', component: BookscomponentComponent},
   {path: 'book', component: BookcomponentComponent},
   {path: 'reviews', component: ReviewscomponentComponent},
-  {path: 'review', component: ReviewcomponentComponent}
+  {path: 'review', component: ReviewcomponentComponent},
+  {path: '**', component: IniciocomponentComponent}
 
 ];
 
