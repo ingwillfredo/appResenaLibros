@@ -17,6 +17,7 @@
 
 input {
     background-color: aliceblue;
+    margin-left: 5%;
     width: 90%;
     max-width: 300px;
     display: block;

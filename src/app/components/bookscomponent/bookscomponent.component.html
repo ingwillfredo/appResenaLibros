@@ -15,12 +15,15 @@
             <div class="col-md-4">
                 Autor
             </div>
-            <div class="col-md-3">
-                
+            <div class="col-md-1">
+                Genero
+            </div>
+            <div class="col-md-2">
+
             </div>
             <hr>
         </div>
-        <div class="books col-lg-12" *ngFor="let item of books | paginate: { itemsPerPage: 7, currentPage: p };let i =index">
+        <div class="books col-lg-12" *ngFor="let item of books | paginate: { itemsPerPage: 7, currentPage: p } | filterAuthor:filter;let i =index">
             <div class="col-md-1">
                 {{i+1}}
             </div>
@@ -30,8 +33,11 @@
             <div class="col-md-4">
                 {{item.author}}
             </div>
-            <div class="col-md-3">
-                <a routerLink="/book" (click)="SelBook(item.id)">Seleccionar</a> 
+            <div class="col-md-1">
+                {{item.genre}}
+            </div>
+            <div class="col-md-2">
+                <a routerLink="/book" (click)="SelBook(item.id)">Detalles</a>
             </div>
         </div>
         <div class="paginador">

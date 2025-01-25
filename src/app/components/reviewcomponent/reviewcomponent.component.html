@@ -4,15 +4,12 @@
     <form class="form" action="submit" [formGroup]="formReview">
         <div class="mb-3">
             <label for="title" class="form-label">Titulo</label>
-            <input type="email" class="form-control" id="title" placeholder="Titulo" formControlName="title">
+            <input type="text" class="form-control" id="title" placeholder="Titulo" formControlName="title">
           </div>
           <div class="mb-3">
             <label for="review" class="form-label">Reseña</label>
             <textarea class="form-control" id="review" rows="3" formControlName="review"></textarea>
           </div>
-          <label for="rating" class="form-label">Calificación</label>
-          <select formControlName="rating" id="rating">
-              <option *ngFor="let item of listRating">{{item}}</option>
-          </select>
-          <button class="btn btn-option" (click)="AddReview()">Guardar</button>
+          <app-rating (emitir)="SetRating($event)"></app-rating>
+          <button class="btn btn-option" (click)="AddReview()">Guardar reseña</button>
     </form>

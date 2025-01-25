@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
 export class NavbarcomponentComponent {
   LoginOut(){
     localStorage.removeItem('token');
+    localStorage.removeItem('idBook');
+    localStorage.removeItem('idUser');
   }
 }

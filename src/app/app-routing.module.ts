@@ -8,16 +8,17 @@ import { BookscomponentComponent } from './components/bookscomponent/bookscompon
 import { BookcomponentComponent } from './components/bookcomponent/bookcomponent.component';
 import { ReviewscomponentComponent } from './components/reviewscomponent/reviewscomponent.component';
 import { ReviewcomponentComponent } from './components/reviewcomponent/reviewcomponent.component';
+import { AuthGuard } from './utils/authGuard';
 
 const routes: Routes = [
-  {path: '', component: IniciocomponentComponent},
+  {path: '', component: BookscomponentComponent},
   {path: 'home', component: HomecomponentComponent},
   {path: 'login', component: LogincomponentComponent},
   {path: 'register', component: RegistercomponentComponent},
   {path: 'books', component: BookscomponentComponent},
   {path: 'book', component: BookcomponentComponent},
   {path: 'reviews', component: ReviewscomponentComponent},
-  {path: 'review', component: ReviewcomponentComponent},
+  {path: 'review', component: ReviewcomponentComponent, canActivate: [AuthGuard]},
   {path: '**', component: IniciocomponentComponent}
 
 ];

@@ -9,18 +9,25 @@ import { HomeserviceService } from 'src/app/services/homeservice.service';
 })
 export class ReviewscomponentComponent implements OnInit {
   reviews: any [] = [];
+  token: string = '';
 
   constructor(private apiService: HomeserviceService, private router: Router){}
   ngOnInit(): void {
     this.GetReviewsByBook();
   }
-  
+
   GetReviewsByBook(){
     var id = Number(localStorage.getItem('idBook'));
     this.apiService.GetReviewByIdBook(id).subscribe(data => {this.reviews = data});
   }
 
   Review(){
-    this.router.navigate(['/review']);
+    if(localStorage.getItem('token') == null){
+      alert('Ingrese con su usuario para dejar un comentario')
+      this.router.navigate(['/inicio']);
+    }
+    else{
+      this.router.navigate(['/review']);
+    }
   }
 }

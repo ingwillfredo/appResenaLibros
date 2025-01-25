@@ -14,23 +14,22 @@ export class ReviewcomponentComponent implements OnInit {
   id: number = 0;
   title: string = '';
   description: string = '';
-  listRating: number [] = [1,2,3,4,5];
+  rating: number = 0;
 
 
   constructor(private apiService: HomeserviceService, private router: Router){}
 
   ngOnInit(): void {
   }
-  
+
     public formBuild = inject(FormBuilder)
-  
+
     public formReview: FormGroup = this.formBuild.group({
       id: 0,
       title: ['',Validators.required],
-      review: ['',Validators.required],
-      rating: ['',Validators.required]
+      review: ['',Validators.required]
     });
-    
+
 
     AddReview(){
       if(this.formReview.invalid) return;
@@ -38,15 +37,19 @@ export class ReviewcomponentComponent implements OnInit {
       const obj: AddReview = {
         id: 0,
         id_Book: Number(localStorage.getItem('idBook')),
-        id_User: 1,
+        id_User: Number(localStorage.getItem('idUser')),
         title: this.formReview.value.title,
         description: this.formReview.value.review,
-        rating: this.formReview.value.rating
+        rating: this.rating
       }
       this.apiService.AddReview(obj).subscribe(data =>{
         console.log(data);
       });
       this.router.navigate(['/books']);
+    }
+
+    SetRating(rating: number){
+      this.rating = Number(rating);
     }
 }
 

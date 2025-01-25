@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+}
+
+h5 {
+  margin-top: 15px ;
+  margin-right: 20px;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+}
+.stars input {
+  display: none;
+}
+.stars label {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+}
+.stars label.selected {
+  color: gold;
+}

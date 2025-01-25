@@ -1,0 +1,12 @@
+<div class="container">
+  <div>
+    <h5>Calificación</h5>
+  </div>
+  <div class="stars">
+    <ng-container *ngFor="let star of stars; index as i">
+        <input type="radio" [id]="'star' + (i + 1)" name="rating" [value]="i + 1" (change)="emitRating(i + 1)">
+        <label [for]="'star' + (i + 1)" [ngClass]="{'selected': i < currentRating}">★</label>
+    </ng-container>
+  </div>
+</div>
+

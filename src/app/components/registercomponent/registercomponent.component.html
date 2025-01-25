@@ -1,1 +1,15 @@
-<p>registercomponent works!</p>
+
+<div class="container">
+  <form class="form" action="submit" [formGroup]="formRegister"><div class="input-group flex-nowrap">
+    <span class="input-group-text" id="addon-wrapping">Nombre</span>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" formControlName="name">
+  </div><div class="input-group flex-nowrap">
+    <span class="input-group-text" id="addon-wrapping">Email </span>
+    <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping" formControlName="email">
+  </div><div class="input-group flex-nowrap">
+    <span class="input-group-text" id="addon-wrapping">Contraseña</span>
+    <input type="password" class="form-control" aria-describedby="addon-wrapping" formControlName="password">
+  </div>
+    <button type="button" class="btn btn-secondary" (click)="Register()">Registrarse</button>
+  </form>
+</div>

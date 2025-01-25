@@ -1,9 +1,11 @@
 
 <div class="container">
+  <form class="form" action="submit" [formGroup]="formLogin">
     <img class="image" src="../assets/img/login.png" alt="Login">
     <label for="login">Email</label>
-    <input type="text">
+    <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
     <label for="login">Contraseña</label>
-    <input type="password">
-    <button type="button" class="btn btn-secondary" (click)="clickIngresar()">Ingresar</button>
+    <input type="password" class="form-control" id="password" formControlName="password">
+    <button type="button" class="btn btn-secondary" (click)="Login()">Ingresar</button>
+  </form>
 </div>

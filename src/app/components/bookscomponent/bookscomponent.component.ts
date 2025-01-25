@@ -11,7 +11,7 @@ export class BookscomponentComponent implements OnInit {
   filter: string = '';
   books: any [] = [];
   p: number = 1;
-  collection: any[] = []; 
+  collection: any[] = [];
 
   constructor(private apiService: HomeserviceService, private router: Router){}
 

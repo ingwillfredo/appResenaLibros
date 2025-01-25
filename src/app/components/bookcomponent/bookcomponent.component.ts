@@ -11,6 +11,7 @@ export class BookcomponentComponent implements OnInit {
   title: string = '';
   description: string = '';
   genre: string = '';
+  author: string = '';
   constructor(private apiService: HomeserviceService){}
 
   ngOnInit(): void {
@@ -20,11 +21,12 @@ export class BookcomponentComponent implements OnInit {
   GetBook(){
     var id = Number(localStorage.getItem('idBook'));
     this.apiService.GetBookById(id).subscribe(
-            data => 
+            data =>
             {
                 this.title = data.title,
                 this.description = data.description,
                 this.genre = data.genre
+                this.author = data.author
             });
   }
 

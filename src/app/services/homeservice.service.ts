@@ -12,19 +12,19 @@ export class HomeserviceService {
 
   //books
 
-  urlGetAllBooks = 'https://localhost:7099/api/Books/GetAllBooks'
+  urlGetAllBooks = 'https://localhost:7099/api/Access/GetAllBooks'
 
   GetAllBooks(): Observable<any>{
     return this.http.get<any>(this.urlGetAllBooks);
   }
 
-  urlGetBookById = 'https://localhost:7099/api/Books/GetBookById/'
+  urlGetBookById = 'https://localhost:7099/api/Access/GetBookById/'
 
   GetBookById(id: number): Observable<any>{
     return this.http.get<any>(this.urlGetBookById + id);
   }
 
-  urlGetReviewByIdBook = 'https://localhost:7099/api/Reviews/GetAllReviewsByBook/'
+  urlGetReviewByIdBook = 'https://localhost:7099/api/Access/GetAllReviewsByBook/'
 
   GetReviewByIdBook(id: number): Observable<any>{
     return this.http.get<any>(this.urlGetReviewByIdBook + id);
