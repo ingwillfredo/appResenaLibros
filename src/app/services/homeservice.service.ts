@@ -12,25 +12,25 @@ export class HomeserviceService {
 
   //books
 
-  urlGetAllBooks = 'https://localhost:7099/api/Access/GetAllBooks'
+  urlGetAllBooks = 'https://pruebatecnica.somee.com/api/Access/GetAllBooks'
 
   GetAllBooks(): Observable<any>{
     return this.http.get<any>(this.urlGetAllBooks);
   }
 
-  urlGetBookById = 'https://localhost:7099/api/Access/GetBookById/'
+  urlGetBookById = 'https://pruebatecnica.somee.com/api/Access/GetBookById/'
 
   GetBookById(id: number): Observable<any>{
     return this.http.get<any>(this.urlGetBookById + id);
   }
 
-  urlGetReviewByIdBook = 'https://localhost:7099/api/Access/GetAllReviewsByBook/'
+  urlGetReviewByIdBook = 'https://pruebatecnica.somee.com/api/Access/GetAllReviewsByBook/'
 
   GetReviewByIdBook(id: number): Observable<any>{
     return this.http.get<any>(this.urlGetReviewByIdBook + id);
   }
 
-  urlAddReview = 'https://localhost:7099/api/Reviews/AddReview'
+  urlAddReview = 'https://pruebatecnica.somee.com/api/Reviews/AddReview'
 
   AddReview(obj: AddReview):Observable<any>{
     console.log(obj);
