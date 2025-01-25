@@ -48,7 +48,7 @@ export class RegistercomponentComponent {
         alert('Por favor digite su email.');
       }
       else if(this.formRegister.value.password == ''){
-        alert('Por favor digite todos su password.');
+        alert('Por favor digite su password.');
       }
     }
 
