@@ -51,25 +51,6 @@ export class RegistercomponentComponent {
         alert('Por favor digite su password.');
       }
     }
-
-    /*
-    this.apiAccess.EmailValidate(this.formRegister.value.email).subscribe(data => {
-      this.validate = data;
-    });
-    if(!this.validate){
-      const user: UserRegister = {
-        name: this.formRegister.value.name,
-        email: this.formRegister.value.email,
-        password: this.formRegister.value.password
-      }
-      this.apiAccess.AddUser(user).subscribe(data => {
-        console.log(data);
-      });
-      this.router.navigate(['/books']);
-    }
-    else{
-      alert('Email ya registrado');
-    }*/
   }
 
 }
