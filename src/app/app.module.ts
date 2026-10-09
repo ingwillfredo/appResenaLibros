@@ -19,6 +19,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FilterAuthorPipe } from './pipes/filter-author.pipe';
 import { RatingComponent } from './components/rating/rating.component';
 import { AuthInterceptor } from './utils/auth-interceptor';
+import { AddBookComponent } from './components/add-book/add-book.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthInterceptor } from './utils/auth-interceptor';
     NavbarcomponentComponent,
     FilterPipe,
     FilterAuthorPipe,
-    RatingComponent
+    RatingComponent,
+    AddBookComponent
   ],
   imports: [
     BrowserModule,

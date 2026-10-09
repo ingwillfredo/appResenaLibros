@@ -9,6 +9,7 @@ import { BookcomponentComponent } from './components/bookcomponent/bookcomponent
 import { ReviewscomponentComponent } from './components/reviewscomponent/reviewscomponent.component';
 import { ReviewcomponentComponent } from './components/reviewcomponent/reviewcomponent.component';
 import { AuthGuard } from './utils/authGuard';
+import { AddBookComponent } from './components/add-book/add-book.component';
 
 const routes: Routes = [
   {path: '', component: BookscomponentComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'register', component: RegistercomponentComponent},
   {path: 'books', component: BookscomponentComponent},
   {path: 'book', component: BookcomponentComponent},
+  {path: 'add-book', component: AddBookComponent, canActivate: [AuthGuard]},
   {path: 'reviews', component: ReviewscomponentComponent},
   {path: 'review', component: ReviewcomponentComponent, canActivate: [AuthGuard]},
   {path: '**', component: IniciocomponentComponent}

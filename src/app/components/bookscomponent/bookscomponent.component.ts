@@ -12,10 +12,18 @@ export class BookscomponentComponent implements OnInit {
   books: any [] = [];
   p: number = 1;
   collection: any[] = [];
+  currentPage: number = 1;
+  pageSize: number = 10; 
+  totalPagesArray: number[] = [];
 
   constructor(private apiService: HomeserviceService, private router: Router){}
 
-  ngOnInit(): void {
+ngOnInit(): void {
+    const savedPage = localStorage.getItem('currentPage');
+    if (savedPage) {
+      this.currentPage = Number(savedPage);
+    }
+
     this.GetAllBooks();
   }
 
@@ -23,10 +31,14 @@ export class BookscomponentComponent implements OnInit {
     this.apiService.GetAllBooks().subscribe(data => {this.books = data});
   }
 
-  SelBook(id: number){
-    let numero: number = id;
-    let cadena: string = numero.toString();
-    localStorage.setItem('idBook', cadena)
-    this.router.navigate(['/book'])
+  onPageChange(event: number) {
+    this.p = event;
+    localStorage.setItem('currentPage', this.p.toString());
+  }
+
+  SelBook(id: number) {
+    localStorage.setItem('currentPage', this.currentPage.toString());
+    localStorage.setItem('idBook', id.toString());
+    this.router.navigate(['/book']);
   }
 }

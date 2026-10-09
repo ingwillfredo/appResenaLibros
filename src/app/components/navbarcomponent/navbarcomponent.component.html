@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
-        <a [routerLink]="['/inicio']">Iniciar Sesión</a>
+        <a [routerLink]="['/inicio']" *ngIf="!active">Iniciar Sesión</a>
         <a [routerLink]="['/books']">Libros</a>
-        <a [routerLink]="['/']" (click)="LoginOut()">Cerrar Sesión</a>
+        <a [routerLink]="['/add-book']" *ngIf="active">Agregar Libro</a>
+        <a [routerLink]="['/']" (click)="LoginOut()" *ngIf="active">Cerrar Sesión</a>
     </div>
 </div>

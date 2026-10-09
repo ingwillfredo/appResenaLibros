@@ -31,9 +31,10 @@ export class LogincomponentComponent {
     this.apiAccess.LoginUser(user).subscribe({
       next:(data)=>{
         if(data.id >0){
-          localStorage.setItem("idUser",data.id)
-          localStorage.setItem("token",data.token)
+          localStorage.setItem("idUser",data.id);
+          localStorage.setItem("token",data.token);
           this.router.navigate(['/books']);
+          sessionStorage.setItem('Active','1');
         }
         else{
           alert('Credenciales Incorrectas');

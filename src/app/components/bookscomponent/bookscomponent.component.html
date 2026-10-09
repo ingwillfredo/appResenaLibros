@@ -3,45 +3,41 @@
     <div class="book">
         <div class="search">
               <input type="search" [(ngModel)]="filter" class="form-control me-2" id="filter" placeholder="Buscar">
-              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+              <button class="btn btn-outline-secondary" type="button">Buscar</button>
         </div>
         <div class="row col-lg-12">
-            <div class="col-md-1">
-                #
-            </div>
-            <div class="col-md-4">
-                Titulo
-            </div>
-            <div class="col-md-4">
-                Autor
-            </div>
-            <div class="col-md-1">
-                Genero
-            </div>
-            <div class="col-md-2">
-
-            </div>
+            <div class="col-md-1">#</div>
+            <div class="col-md-4">Titulo</div>
+            <div class="col-md-3">Autor</div>
+            <div class="col-md-1">Genero</div>
+            <div class="col-md-1">Reseñas</div>
+            <div class="col-md-2"></div>
             <hr>
         </div>
-        <div class="books col-lg-12" *ngFor="let item of books | paginate: { itemsPerPage: 7, currentPage: p } | filterAuthor:filter;let i =index">
+
+        <div class="books col-lg-12" *ngFor="let item of books | filterAuthor:filter | paginate: { itemsPerPage: 7, currentPage: p }; let i = index">
             <div class="col-md-1">
-                {{i+1}}
+                {{ (p - 1) * 7 + i + 1 }}
             </div>
             <div class="col-md-4">
                 {{item.title}}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{item.author}}
             </div>
             <div class="col-md-1">
                 {{item.genre}}
             </div>
+            <div class="col-md-1">
+                {{item.reviews}}
+            </div>
             <div class="col-md-2">
                 <a routerLink="/book" (click)="SelBook(item.id)">Detalles</a>
             </div>
         </div>
+
         <div class="paginador">
-            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
         </div>
     </div>
 </div>

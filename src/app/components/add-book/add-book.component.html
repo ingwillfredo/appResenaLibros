@@ -1,0 +1,99 @@
+<div class="main-wrapper">
+  
+  <button type="button" class="btn-back" (click)="goBack()">
+    ← Volver
+  </button>
+
+  <div class="form-card">
+    <h2 class="form-title">Agregar Nuevo Libro</h2>
+
+    <div *ngIf="message.text" [class]="'alert-message ' + message.type">
+      {{ message.text }}
+    </div>
+
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="title">Título del Libro *</label>
+        <input id="title" type="text" formControlName="title" placeholder="Ej: Cien años de soledad" />
+        <span class="error-text" *ngIf="bookForm.get('title')?.touched && bookForm.get('title')?.invalid">
+          El título es obligatorio (máximo 255 caracteres).
+        </span>
+      </div>
+
+      <div class="form-row">
+        <!-- DESPLEGABLE AUTOR -->
+        <div class="form-group">
+          <label for="idAuthor">Autor *</label>
+          <select id="idAuthor" formControlName="idAuthor">
+            <option value="" disabled selected>Seleccione un autor</option>
+            <option *ngFor="let author of authors" [value]="author.idAuthor">
+              {{ author.nameAuthor }}
+            </option>
+          </select>
+          <span class="error-text" *ngIf="bookForm.get('idAuthor')?.touched && bookForm.get('idAuthor')?.invalid">
+            Debe seleccionar un autor.
+          </span>
+        </div>
+
+        <!-- DESPLEGABLE GÉNERO -->
+        <div class="form-group">
+          <label for="idGenre">Género *</label>
+          <select id="idGenre" formControlName="idGenre">
+            <option value="" disabled selected>Seleccione un género</option>
+            <option *ngFor="let genre of genres" [value]="genre.idGenre">
+              {{ genre.nameGenre }}
+            </option>
+          </select>
+          <span class="error-text" *ngIf="bookForm.get('idGenre')?.touched && bookForm.get('idGenre')?.invalid">
+            Debe seleccionar un género.
+          </span>
+        </div>
+      </div>
+
+      <!-- ZONA INTERACTIVA DE IMAGEN -->
+      <div class="form-group">
+        <label>Imagen del Libro</label>
+        
+        <div 
+          class="drop-zone" 
+          [class.dragging]="isDragging"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+          (click)="fileInput.click()">
+
+          <input 
+            #fileInput 
+            type="file" 
+            accept="image/*" 
+            (change)="onFileSelected($event)" 
+            hidden />
+
+          <div *ngIf="!imagePreview" class="drop-zone-content">
+            <p>📷 Haz clic para seleccionar, arrastra una imagen aquí o pégala (Ctrl+V)</p>
+          </div>
+
+          <div *ngIf="imagePreview" class="preview-container">
+            <img [src]="imagePreview" alt="Vista previa" class="image-preview" />
+            <button type="button" class="btn-remove-image" (click)="removeImage(); $event.stopPropagation()">
+              ✕ Quitar imagen
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Resumen / Descripción</label>
+        <textarea id="description" formControlName="description" rows="4" placeholder="Escribe un breve resumen..."></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="bookForm.invalid || isSubmitting" class="btn-submit">
+          {{ isSubmitting ? 'Guardando...' : 'Guardar Libro' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

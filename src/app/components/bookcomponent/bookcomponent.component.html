@@ -1,16 +1,31 @@
 
 <div class="container">
+    <div class="return" routerLink="/home">
+        <h6>Volver</h6>
+    </div>
     <div class="book">
-        <div class="title">
-            <h1>{{title}}</h1>
-            <div class="genre">
-              <h5>{{author}}</h5>
-                <h5>{{genre}}</h5>
+        <div class="header-book">
+            <div class="image">
+                <img [src]="image ? image : 'assets/img/default-cover.png'" alt="{{title}}" (click)="openModal()" style="cursor: pointer;">
+            </div>
+            <div class="title">
+                <h1>{{title}}</h1>
+                <div class="genre">
+                <h5>{{author}}</h5>
+                    <h5>{{genre}}</h5>
+                </div>
             </div>
         </div>
         <div class="description">
             <h4>{{description}}</h4>
         </div>
+    </div>
+</div>
+
+<div class="modal-overlay" *ngIf="showImageModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <span class="close-btn" (click)="closeModal()">&times;</span>
+        <img [src]="image" alt="{{title}}">
     </div>
 </div>
 

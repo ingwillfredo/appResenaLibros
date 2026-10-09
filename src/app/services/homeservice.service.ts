@@ -8,29 +8,33 @@ import { AddReview } from '../models/addReview.model';
 })
 export class HomeserviceService {
 
+  
+  //baseUrl: string = 'https://localhost:7162/api/'
+  baseUrl: string = 'https://apiconsultalibros.somee.com/api/'
+
   constructor(private http: HttpClient) { }
 
   //books
 
-  urlGetAllBooks = 'https://pruebatecnica.somee.com/api/Access/GetAllBooks'
+  urlGetAllBooks = this.baseUrl + 'Auth/GetAllBooks'
 
   GetAllBooks(): Observable<any>{
     return this.http.get<any>(this.urlGetAllBooks);
   }
 
-  urlGetBookById = 'https://pruebatecnica.somee.com/api/Access/GetBookById/'
+  urlGetBookById = this.baseUrl + 'books/'
 
   GetBookById(id: number): Observable<any>{
     return this.http.get<any>(this.urlGetBookById + id);
   }
 
-  urlGetReviewByIdBook = 'https://pruebatecnica.somee.com/api/Access/GetAllReviewsByBook/'
+  urlGetReviewByIdBook = this.baseUrl + 'Reviews/GetAllReviewsByBook/'
 
   GetReviewByIdBook(id: number): Observable<any>{
     return this.http.get<any>(this.urlGetReviewByIdBook + id);
   }
 
-  urlAddReview = 'https://pruebatecnica.somee.com/api/Reviews/AddReview'
+  urlAddReview = this.baseUrl + 'Reviews/AddReview'
 
   AddReview(obj: AddReview):Observable<any>{
     console.log(obj);

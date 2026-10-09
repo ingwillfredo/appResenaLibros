@@ -18,7 +18,7 @@ h4 {
 .row {
     border-radius: 10px;
     padding: 10px;
-    width: 70%;
+    width: 90%;
     text-align: center;
     margin: 0 auto;
     display: flex;
@@ -33,7 +33,7 @@ hr {
 .books {
     border-radius: 10px;
     padding: 10px;
-    width: 70%;
+    width: 90%;
     text-align: center;
     margin: 0 auto;
     display: flex;

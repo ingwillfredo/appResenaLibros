@@ -9,30 +9,33 @@ import { Login } from '../models/login.model';
 })
 export class AccesServiceService {
 
+  //baseUrl: string = 'https://localhost:7162/api/'
+  baseUrl: string = 'https://apiconsultalibros.somee.com/api/'
+
   constructor(private http: HttpClient) { }
 
-  urlEmailValidate = 'https://pruebatecnica.somee.com/api/Access/ValidateEmail/';
+  urlEmailValidate = this.baseUrl + 'Auth/ValidateEmail/';
 
   EmailValidate(email: string): Observable<any>{
     let result =  this.http.get<any>(this.urlEmailValidate + email);
     return result;
   }
 
-  urlAddUser = 'https://pruebatecnica.somee.com/api/Access/AddUser';
+  urlAddUser = this.baseUrl + 'Auth/AddUser';
 
   AddUser(user: any): Observable<any>{
     let result = this.http.post<any>(this.urlAddUser, user)
     return result
   }
 
-  urlLoginUser= 'https://pruebatecnica.somee.com/api/Access/LoginUser';
+  urlLoginUser= this.baseUrl + 'Auth/Login';
 
   LoginUser(login: Login): Observable<any>{
     let result =  this.http.post<any>(this.urlLoginUser, login);
     return result;
   }
 
-  urlTokenValidate = 'http://localhost:7099/api/Access/TokenValidate';
+  urlTokenValidate = this.baseUrl + 'Auth/TokenValidate';
 
   TokenValidate(token: string): Observable<ResponseAccess>{
     return this.http.get<ResponseAccess>(`${this.urlTokenValidate}?token=${token}`)
