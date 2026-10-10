@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ResponseAccess } from '../models/responseAcces.model';
 import { Login } from '../models/login.model';
 import { AddBook } from '../models/add-book.interface';
+import { environment } from 'src/environments/environment.development';
 
 export interface Author {
   idAuthor: number;
@@ -20,8 +21,7 @@ export interface Genre {
 })
 export class BookServiceService {
 
-  //baseUrl: string = 'https://localhost:7162/api/'
-  baseUrl: string = 'https://apiconsultalibros.somee.com/api/'
+  baseUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

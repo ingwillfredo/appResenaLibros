@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ResponseAccess } from '../models/responseAcces.model';
 import { Login } from '../models/login.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccesServiceService {
 
-  baseUrl: string = 'https://apiconsultalibros.somee.com/api/'
+  baseUrl: string = environment.apiUrl;
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.checkInitialToken());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();

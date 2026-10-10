@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AddReview } from '../models/addReview.model';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,7 @@ import { AddReview } from '../models/addReview.model';
 export class HomeserviceService {
 
   
-  //baseUrl: string = 'https://localhost:7162/api/'
-  baseUrl: string = 'https://apiconsultalibros.somee.com/api/'
+  baseUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

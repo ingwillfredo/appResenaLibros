@@ -27,19 +27,23 @@ export class BookscomponentComponent implements OnInit {
     private apiAccess: AccesServiceService){}
 
 ngOnInit(): void {
-    const savedPage = localStorage.getItem('currentPage');
-    if (savedPage) {
-      this.currentPage = Number(savedPage);
-    }
-
-    
-    this.authSub = this.apiAccess.isAuthenticated$.subscribe(status => {
-      this.active = status;
-    });
-
-    this.GetAllBooks();
-    this.userName = localStorage.getItem('userName') || '';
+  const savedPage = localStorage.getItem('currentPage');
+  if (savedPage) {
+    this.currentPage = Number(savedPage);
   }
+
+  this.authSub = this.apiAccess.isAuthenticated$.subscribe(status => {
+    this.active = status;
+    
+    if (status) {
+      this.userName = localStorage.getItem('userName') || '';
+    } else {
+      this.userName = '';
+    }
+  });
+
+  this.GetAllBooks();
+}
 
   GetAllBooks(){
     this.apiService.GetAllBooks().subscribe(data => {this.books = data});
