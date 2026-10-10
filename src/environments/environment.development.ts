@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7162/api/'
-  //apiUrl: 'https://apiconsultalibros.somee.com/api/'
+  //apiUrl: 'https://localhost:7162/api/'
+  apiUrl: 'https://apiconsultalibros.somee.com/api/'
 };
