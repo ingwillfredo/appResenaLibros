@@ -2,7 +2,10 @@
     <div class="row">
         <a [routerLink]="['/inicio']" *ngIf="!active">Iniciar Sesión</a>
         <a [routerLink]="['/books']">Libros</a>
-        <a [routerLink]="['/add-book']" *ngIf="active">Agregar Libro</a>
+        <a [routerLink]="['/add-book']" *ngIf="canCreateBook">Agregar Libro</a>
         <a [routerLink]="['/']" (click)="LoginOut()" *ngIf="active">Cerrar Sesión</a>
+    </div>
+    <div class="row-user" *ngIf="active">
+        <h6 class="card-user">{{ userName }}</h6>
     </div>
 </div>

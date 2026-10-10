@@ -10,6 +10,7 @@ import { AccesServiceService } from 'src/app/services/acces-service.service';
 })
 export class NavbarcomponentComponent implements OnInit, OnDestroy {
   active: boolean = false;
+  userName: string = '';
   private authSub!: Subscription;
 
   constructor(
@@ -19,7 +20,18 @@ export class NavbarcomponentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authSub = this.apiAccess.isAuthenticated$.subscribe(status => {
       this.active = status;
+      
+      if (status) {
+        this.userName = localStorage.getItem('userName') || '';
+      } else {
+        this.userName = '';
+      }
     });
+  }
+
+  get canCreateBook(): boolean {
+    const typeUser = localStorage.getItem('typeUser');
+    return typeUser === '1' || typeUser === '2';
   }
 
   LoginOut() {
@@ -27,6 +39,7 @@ export class NavbarcomponentComponent implements OnInit, OnDestroy {
     localStorage.removeItem('idUser');
     localStorage.removeItem('idBook');
     localStorage.removeItem('userName');
+    localStorage.removeItem('typeUser');
     this.active = false;
     this.apiAccess.setAuthState(false);
     

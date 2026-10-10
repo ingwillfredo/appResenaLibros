@@ -17,7 +17,6 @@ export class BookscomponentComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10; 
   totalPagesArray: number[] = [];
-  userName: string = '';
   active: boolean = false;
   private authSub!: Subscription;
 
@@ -34,12 +33,6 @@ ngOnInit(): void {
 
   this.authSub = this.apiAccess.isAuthenticated$.subscribe(status => {
     this.active = status;
-    
-    if (status) {
-      this.userName = localStorage.getItem('userName') || '';
-    } else {
-      this.userName = '';
-    }
   });
 
   this.GetAllBooks();

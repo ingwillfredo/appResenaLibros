@@ -2,11 +2,22 @@
     background-color: #c6c6c6;
     border-radius: 10px;
     padding: 5px;
-    width: 70%;
+    width: 90%;
     text-align: center;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
+}
+
+.row-user {
+    width: 90%;
+    margin-left: 5%;
+    background-color: #dddcdc;
+    border-radius: 7px;
+}
+
+.card-user {
+    margin-left: 70%;
 }
 
 a {
