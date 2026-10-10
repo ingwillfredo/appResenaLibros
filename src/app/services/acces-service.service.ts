@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ResponseAccess } from '../models/responseAcces.model';
 import { Login } from '../models/login.model';
 
@@ -9,36 +9,40 @@ import { Login } from '../models/login.model';
 })
 export class AccesServiceService {
 
-  //baseUrl: string = 'https://localhost:7162/api/'
   baseUrl: string = 'https://apiconsultalibros.somee.com/api/'
+
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.checkInitialToken());
+  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  urlEmailValidate = this.baseUrl + 'Auth/ValidateEmail/';
+  private checkInitialToken(): boolean {
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return Date.now() < (payload.exp * 1000);
+    } catch {
+      return false;
+    }
+  }
 
+  setAuthState(isAuth: boolean) {
+    this.isAuthenticatedSubject.next(isAuth);
+  }
+
+  urlEmailValidate = this.baseUrl + 'Auth/ValidateEmail/';
   EmailValidate(email: string): Observable<any>{
-    let result =  this.http.get<any>(this.urlEmailValidate + email);
-    return result;
+    return this.http.get<any>(this.urlEmailValidate + email);
   }
 
   urlAddUser = this.baseUrl + 'Auth/AddUser';
-
   AddUser(user: any): Observable<any>{
-    let result = this.http.post<any>(this.urlAddUser, user)
-    return result
+    return this.http.post<any>(this.urlAddUser, user);
   }
 
-  urlLoginUser= this.baseUrl + 'Auth/Login';
-
+  urlLoginUser = this.baseUrl + 'Auth/Login';
   LoginUser(login: Login): Observable<any>{
-    let result =  this.http.post<any>(this.urlLoginUser, login);
-    return result;
-  }
-
-  urlTokenValidate = this.baseUrl + 'Auth/TokenValidate';
-
-  TokenValidate(token: string): Observable<ResponseAccess>{
-    return this.http.get<ResponseAccess>(`${this.urlTokenValidate}?token=${token}`)
-
+    return this.http.post<any>(this.urlLoginUser, login);
   }
 }

@@ -1,51 +1,45 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AccesServiceService } from '../services/acces-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {
+export class AuthGuard implements CanActivate {
+  
+  constructor(private router: Router) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.CheckUserToken();
   }
 
-  result: boolean = false;
+  CheckUserToken(): boolean {
+    const token = localStorage.getItem('token');
 
-  constructor(private router: Router, private accesServise: AccesServiceService ){}
-
-  CheckUserToken(): boolean{
-    var token = localStorage.getItem('token') || '';
-    if(token?.length>0)
-    {/*
-      if(this.ValidateToken())
-        return true;
-      else
-      {
-        this.router.navigateByUrl('');
-        return false;
-      }*/
-      return true;
+    if (!token) {
+      this.router.navigateByUrl('login');
+      return false;
     }
-    else{
+
+    if (this.ValidateTokenLocal(token)) {
+      return true;
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('idUser');
       this.router.navigateByUrl('login');
       return false;
     }
   }
 
-  ValidateToken(): boolean{
-    var token = localStorage.getItem('token') || '';
-    this.accesServise.TokenValidate(token).subscribe(date =>{ console.log(date)
-      //this.result = date.issucces;
-    })
-    if(this.result)
-      return true;
-    else{
-      alert('error en el token')
-      this.router.navigateByUrl('');
+  ValidateTokenLocal(token: string): boolean {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expirationTime = payload.exp * 1000; 
+      
+      return Date.now() < expirationTime;
+    } catch (error) {
       return false;
     }
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AccesServiceService } from 'src/app/services/acces-service.service';
 import { HomeserviceService } from 'src/app/services/homeservice.service';
 
 @Component({
@@ -15,8 +17,14 @@ export class BookscomponentComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10; 
   totalPagesArray: number[] = [];
+  userName: string = '';
+  active: boolean = false;
+  private authSub!: Subscription;
 
-  constructor(private apiService: HomeserviceService, private router: Router){}
+  constructor(
+    private apiService: HomeserviceService, 
+    private router: Router, 
+    private apiAccess: AccesServiceService){}
 
 ngOnInit(): void {
     const savedPage = localStorage.getItem('currentPage');
@@ -24,7 +32,13 @@ ngOnInit(): void {
       this.currentPage = Number(savedPage);
     }
 
+    
+    this.authSub = this.apiAccess.isAuthenticated$.subscribe(status => {
+      this.active = status;
+    });
+
     this.GetAllBooks();
+    this.userName = localStorage.getItem('userName') || '';
   }
 
   GetAllBooks(){

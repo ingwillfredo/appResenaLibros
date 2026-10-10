@@ -22,26 +22,26 @@ export class LogincomponentComponent {
     password:['', Validators.required]
   })
 
-  Login(){
-    if(this.formLogin.invalid)return;
-    const user: Login = {
-      email: this.formLogin.value.email,
-      password: this.formLogin.value.password
-    }
+  Login() {
+    if (this.formLogin.invalid) return;
+
+    const user: Login = this.formLogin.value;
+
     this.apiAccess.LoginUser(user).subscribe({
-      next:(data)=>{
-        if(data.id >0){
-          localStorage.setItem("idUser",data.id);
-          localStorage.setItem("token",data.token);
+      next: (data) => {
+        if (data.id > 0 && data.token) {
+          this.apiAccess.setAuthState(true);
+          localStorage.setItem("idUser", data.id.toString());
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userName", data.name);
           this.router.navigate(['/books']);
-          sessionStorage.setItem('Active','1');
-        }
-        else{
+        } else {
           alert('Credenciales Incorrectas');
         }
       },
-      error:(error)=>{
-        console.log(error.message)
+      error: (error) => {
+        console.error(error);
+        alert('Ocurrió un error al iniciar sesión. Inténtalo de nuevo.');
       }
     });
   }
