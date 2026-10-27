@@ -28,6 +28,10 @@ export class NavbarcomponentComponent implements OnInit, OnDestroy {
       }
     });
   }
+  
+  get isAddBookRoute(): boolean {
+    return this.router.url.includes('add-book');
+  }
 
   get canCreateBook(): boolean {
     const typeUser = localStorage.getItem('typeUser');
