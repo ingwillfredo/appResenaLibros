@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'register', component: RegistercomponentComponent},
   {path: 'books', component: BookscomponentComponent},
   {path: 'book', component: BookcomponentComponent},
-  {path: 'add-book', component: AddBookComponent, canActivate: [AuthGuard]},
+  {path: 'add-book', component: AddBookComponent, canActivate: [AuthGuard], data: { expectedRoles: [1, 2] }},
   {path: 'reviews', component: ReviewscomponentComponent},
   {path: 'review', component: ReviewcomponentComponent, canActivate: [AuthGuard]},
   {path: '**', component: IniciocomponentComponent}

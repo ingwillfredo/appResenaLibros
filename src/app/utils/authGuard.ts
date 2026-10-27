@@ -12,7 +12,24 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.CheckUserToken();
+    
+    if (!this.CheckUserToken()) {
+      return false;
+    }
+    
+    const expectedRoles = route.data['expectedRoles'] as Array<number>;
+    
+    if (expectedRoles) {
+      const typeUserStr = localStorage.getItem('typeUser');
+      const typeUser = typeUserStr ? Number(typeUserStr) : null;
+
+      if (!typeUser || !expectedRoles.includes(typeUser)) {
+        this.router.navigate(['/books']); 
+        return false;
+      }
+    }
+
+    return true;
   }
 
   CheckUserToken(): boolean {
@@ -28,6 +45,8 @@ export class AuthGuard implements CanActivate {
     } else {
       localStorage.removeItem('token');
       localStorage.removeItem('idUser');
+      localStorage.removeItem('typeUser'); 
+      localStorage.removeItem('userName');
       this.router.navigateByUrl('login');
       return false;
     }
